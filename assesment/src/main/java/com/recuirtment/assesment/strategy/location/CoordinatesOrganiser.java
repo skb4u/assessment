@@ -11,6 +11,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Implementation for K-Dimentional binary tree to store Latitude and Longitude values.
+ *
  * @author Saravanakumar Alavandar
  */
 @Component
@@ -47,6 +49,7 @@ public class CoordinatesOrganiser {
 
         Restaurant child;
 
+        // check latitude
         if (axis == Axis.X) {
 
             if (newRestaurant.getLatitude() < parent.getLatitude())
@@ -54,6 +57,7 @@ public class CoordinatesOrganiser {
             else
                 child = parent.getRight();
 
+            // If there is child, go and check that one
             if (child != null) {
                 axis = (axis == Axis.X) ? Axis.Y : Axis.X;
 
@@ -66,7 +70,7 @@ public class CoordinatesOrganiser {
             if (log.isDebugEnabled()) {
                 log.debug("adding child - parent lat {}, current lat {} ", parent.getLatitude(), newRestaurant.getLatitude());
             }
-
+            // adding child
             if (newRestaurant.getLatitude() < parent.getLatitude())
                 parent.setLeft(newRestaurant);
 
@@ -75,6 +79,7 @@ public class CoordinatesOrganiser {
 
         }
 
+        // check longitude
         if (axis == Axis.Y) {
 
             if (newRestaurant.getLongitude() < parent.getLongitude())
@@ -93,6 +98,7 @@ public class CoordinatesOrganiser {
                 log.debug("adding child - parent long {}, current long {} ", parent.getLongitude(), newRestaurant.getLongitude());
             }
 
+            // add child
             if (newRestaurant.getLongitude() < parent.getLongitude())
                 parent.setLeft(newRestaurant);
             else
